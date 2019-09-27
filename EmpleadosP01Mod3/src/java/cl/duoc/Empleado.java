@@ -6,6 +6,15 @@ public class Empleado {
     private String nombre;
     private int edad;
     private int antiguedad;
+     private int bono;
+
+    public int getBono() {
+        return bono;
+    }
+
+    public void setBono(int bono) {
+        this.bono = bono;
+    }
 
     public Empleado() {
     }

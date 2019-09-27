@@ -110,5 +110,36 @@ public class BussEmpleado {
         }
         return std;
     }
+    public boolean montoBono(){
+        boolean std=false;
+       int bono=0;
+        List<Empleado> lista = new ArrayList<>();
+        try {
+            Conectar db=new Conectar();
+            Connection conn=db.conectarMySQL();
+            String sql="select * from empleado where antiguedad >3 ";
+            PreparedStatement stm=conn.prepareStatement(sql);
+            ResultSet rs=stm.executeQuery();
+            while(rs.next()){
+                Empleado em=new Empleado();
+                em.setRut(rs.getString("rut"));
+                em.setNombre(rs.getString("nombre"));
+                em.setEdad(rs.getInt("edad"));
+                em.setAntiguedad(rs.getInt("antiguedad"));
+                int asd=em.getAntiguedad()*50000;
+                em.setBono(asd);
+                lista.add(em);
+                
+            }
+            for(int i=0;i<lista.size();i++){
+               bono=lista.get(i).getAntiguedad()*50000;
+               lista.get(i).setBono(bono);
+               return std=true;
+            }
+        } catch (Exception e) {
+        }
+        return std;
+        
+    }
 
 }
